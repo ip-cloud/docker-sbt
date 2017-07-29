@@ -1,6 +1,7 @@
 # Scala SBT Builder Image
 
 [![CircleCI](https://circleci.com/gh/ip-cloud/docker-sbt/tree/master.svg?style=svg)](https://circleci.com/gh/ip-cloud/docker-sbt/tree/master)
+[![Docker Repository on Quay](https://quay.io/repository/ip-cloud/sbt/status "Docker Repository on Quay")](https://quay.io/repository/ip-cloud/sbt)
 
 With newly added support of multi-stage Dockerfiles in Docker 1.17 this image provides a compact builder runtime to compile your SBT based projects. This image is based on the Alpine docker image and uses JDK 1.8
 

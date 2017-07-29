@@ -10,5 +10,20 @@ jobs:
           command: docker build -t ipcloud/sbt:latest .
       - run:
           command: |
-            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             docker push ipcloud/sbt:latest
+            if [ -n "$CIRCLE_TAG" ]
+              then
+              docker tag ipcloud/sbt:latest ipcloud/sbt:$CIRCLE_TAG 
+              docker push ipcloud/sbt:$CIRCLE_TAG
+            fi
+      - run:
+          command: |
+            docker login -u $QUAY_USERNAME -p $QUAY_PASSWORD
+            docker tag ipcloud/sbt:latest quay.io/ip-cloud/sbt:latest
+            docker push quay.io/ip-cloud/sbt:latest
+            if [ -n "$CIRCLE_TAG" ]
+              then
+              docker tag ipcloud/sbt:latest quay.io/ip-cloud/sbt:$CIRCLE_TAG
+              docker push quay.io/ip-cloud/sbt:$CIRCLE_TAG
+            fi

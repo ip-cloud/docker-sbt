@@ -2,10 +2,12 @@ FROM alpine:latest
 
 MAINTAINER IP Cloud <info@ip-cloud.nl>
 
+ENV SBT_VERSION 01316
+
 # Install Java 8 and download dependencies
-RUN apk update && apk upgrade && apk add openjdk8-jre ca-certificates && \
+RUN apk update && apk upgrade && apk add ca-certificates && \
     update-ca-certificates && apk add openssl bash && \
-    wget -qO- https://cocl.us/sbt01316tgz | tar xvz -C /var/lib && \
+    wget -qO- https://cocl.us/sbt${SBT_VERSION}tgz | tar xvz -C /var/lib && \
     mkdir -p /usr/src/app
 
 WORKDIR /usr/src/app
