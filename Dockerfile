@@ -5,7 +5,10 @@ MAINTAINER IP Cloud <info@ip-cloud.nl>
 # Install Java 8 and download dependencies
 RUN apk update && apk upgrade && apk add openjdk8-jre ca-certificates && \
     update-ca-certificates && apk add openssl bash && \
-    wget -qO- https://cocl.us/sbt01316tgz | tar xvz -C /var/lib
+    wget -qO- https://cocl.us/sbt01316tgz | tar xvz -C /var/lib && \
+    mkdir -p /usr/src/app
+
+WORKDIR /usr/src/app
 
 ENV PATH $PATH:/var/lib/sbt/bin
 
