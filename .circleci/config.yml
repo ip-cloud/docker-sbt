@@ -19,7 +19,7 @@ jobs:
             fi
       - run:
           command: |
-            docker login -u $QUAY_USERNAME -p $QUAY_PASSWORD
+            docker login -u $QUAY_USERNAME -p $QUAY_PASSWORD quay.io
             docker tag ipcloud/sbt:latest quay.io/ip-cloud/sbt:latest
             docker push quay.io/ip-cloud/sbt:latest
             if [ -n "$CIRCLE_TAG" ]
