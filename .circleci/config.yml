@@ -7,8 +7,8 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          command: docker build -t ip-cloud/sbt:latest .
+          command: docker build -t ipcloud/sbt:latest .
       - run:
-          command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-      - run: 
-          command: docker push ip-cloud/sbt:latest
+          command: |
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
+            docker push ipcloud/sbt:latest
