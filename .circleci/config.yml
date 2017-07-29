@@ -1,0 +1,7 @@
+version: 2
+jobs:
+  build: 
+    steps:
+      - checkout
+      - run:
+        command: docker build -t ip-cloud/sbt:latest .

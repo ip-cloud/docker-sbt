@@ -1,13 +1,16 @@
 FROM alpine:latest
 
+MAINTAINER IP Cloud <info@ip-cloud.nl>
+
 # Install Java 8 and download dependencies
 RUN apk update && apk upgrade && apk add openjdk8-jre ca-certificates && \
-    update-ca-certificates && apk add openssl bash
+    update-ca-certificates && apk add openssl bash && \
+    wget -qO- https://cocl.us/sbt01316tgz | tar xvz -C /var/lib && \
+    apk del openssl ca-certificates
 
-WORKDIR /var/lib
-RUN wget -qO- https://cocl.us/sbt01316tgz | tar xvz
 ENV PATH $PATH:/var/lib/sbt/bin
-WORKDIR /
 
 # Run initial SBT command to immediately exit to download version specific binaries
 RUN sbt exit
+
+CMD "/var/lib/sbt/bin/sbt"
